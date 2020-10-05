@@ -10,6 +10,8 @@ version: 0.2.0
 supports:
   - platform-name: ubuntu
     release: 16.04
+  - platform-name: ubuntu
+    release: 18.04
 
 inputs:
   - name: platform_name
@@ -157,6 +159,11 @@ inputs:
       'uuidd',
       'dnsmasq',
       'statd',
+      'landscape',
+      'pollinate',
+      'ubuntu',
+      'clamav',
+      '_chrony'
     ]
 
   - name: disallowed_accounts
@@ -276,25 +283,25 @@ inputs:
   - name: standard_audit_log_size
     description: Set audit log size in bytes (default:1073741824 per control specification)
     type: Numeric
-    value: 1073741824
+    value: 8894028
 
 
 #V-75623
   - name: action_mail_acct
     description: Email address of the SA and ISSO to be notified in case of audit record storage issues
     type: String
-    value: ''
+    value: 'root'
 
 #V-75837
   - name: client_alive_interval
     description: Client Alive Interval
     type: Numeric
-    value: 600
+    value: 900
 
   - name: client_alive_count_max
     description: Client Alive Interval
     type: Numeric
-    value: 1
+    value: 0
 
 #V-75867
   - name: allowed_network_interfaces
