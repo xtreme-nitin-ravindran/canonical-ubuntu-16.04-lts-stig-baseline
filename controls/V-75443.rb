@@ -50,7 +50,7 @@ Add the following line to the top of the /etc/security/limits.conf:
 
 * hard maxlogins 10"
 
-  describe limits_conf do
+  describe limits_conf('/etc/security/limits.d/ansible-hardening-maxlogins.conf') do
     its('*') { should include ['hard', 'maxlogins', input('maxlogins').to_s] }
   end
 end

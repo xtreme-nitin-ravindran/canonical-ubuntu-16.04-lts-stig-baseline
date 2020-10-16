@@ -51,8 +51,8 @@ FIPS 140-2 security policy document for instructions."
   config_file_exists = file(config_file).exist?
 
   if config_file_exists
-    describe parse_config_file(config_file) do
-      it { should cmp '1' }
+    describe file(config_file) do
+      its('content') { should match %r{\A1\Z} }
     end
   else
     describe ('FIPS is enabled') do

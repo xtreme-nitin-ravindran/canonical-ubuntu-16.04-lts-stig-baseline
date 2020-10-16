@@ -59,6 +59,7 @@ administrators are notified via email for those situations:
 action_mail_acct = root"
 
   security_accounts = input('security_accounts').join('|')
+  security_accounts << "email"
   space_left_action = auditd_conf.space_left_action
 
   describe 'System Administrator (SA) and Information System Security Officer (ISSO) are notified in the event of an audit processing failure' do

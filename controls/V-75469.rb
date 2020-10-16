@@ -72,7 +72,7 @@ an administrator:
   else
     emergency_accounts.each do |acct|
       describe command("sudo chage -l #{acct} | grep 'Account expires'") do
-        its('stdout.strip') { should_not match /:\s*never/ }
+        its('stdout.strip') { should_not match /:\p{Blank}*: never/ }
       end
     end
   end

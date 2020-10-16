@@ -53,7 +53,7 @@ auth required pam_faildelay.so delay=4000000"
 
   file('/etc/pam.d/common-auth').content.to_s.scan(/^\s*auth\s+required\s+pam_faildelay.so\s+.*delay=(\d+).*$/).flatten.each do |entry|
     describe entry do
-      it { should cmp > 4_000_000 }
+      it { should cmp >= 4_000_000 }
     end
   end
 end
