@@ -58,7 +58,7 @@ passwords can be regenerated."
 
   users.where { !shell.match(ignore_shells) }.entries.each do |user_info|
     shadow.where(user: user_info.username).passwords.each do |user_pwd|
-      pwd_should_be_evaluated = !(user_pwd.casecmp?('!') || user_pwd.casecmp?('*'))
+      pwd_should_be_evaluated = ! user_pwd.casecmp?('!*') && ( !(user_pwd.casecmp?('!') || user_pwd.casecmp?('*')) )
       next unless pwd_should_be_evaluated
 
       describe (user_info.username + ' - user\'s password hash') do

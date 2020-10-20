@@ -46,15 +46,15 @@ audit tools.
 Check the selection lines that aide is configured to add/check with the
 following command:
 
-# egrep '(\\/usr\\/sbin\\/(audit|au))' /etc/aide/aide.conf
+# egrep '(/sbin/(audit|au))' /etc/aide/aide.conf
 
-/usr/sbin/auditctl p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/auditd p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/ausearch p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/aureport p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/autrace p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/audispd p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/augenrules p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/auditctl p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/auditd p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/ausearch p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/aureport p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/autrace p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/audispd p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/augenrules p+i+n+u+g+s+b+acl+xattr+sha512
 
 If any of the seven audit tools does not have an appropriate selection line,
 this is a finding."
@@ -62,42 +62,42 @@ this is a finding."
 \"/etc/aide/aide.conf\", in order to protect the integrity of the audit tools.
 
 # Audit Tools
-/usr/sbin/auditctl p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/auditd p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/ausearch p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/aureport p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/autrace p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/audispd p+i+n+u+g+s+b+acl+xattr+sha512
-/usr/sbin/augenrules p+i+n+u+g+s+b+acl+xattr+sha512"
+/sbin/auditctl p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/auditd p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/ausearch p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/aureport p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/autrace p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/audispd p+i+n+u+g+s+b+acl+xattr+sha512
+/sbin/augenrules p+i+n+u+g+s+b+acl+xattr+sha512"
 
   aide_conf_exists = aide_conf.exist?
 
   if aide_conf_exists
-    describe aide_conf.where { selection_line == '/usr/sbin/auditctl' } do
+    describe aide_conf.where { selection_line == '/sbin/auditctl' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/auditd' } do
+    describe aide_conf.where { selection_line == '/sbin/auditd' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/ausearch' } do
+    describe aide_conf.where { selection_line == '/sbin/ausearch' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/aureport' } do
+    describe aide_conf.where { selection_line == '/sbin/aureport' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/autrace' } do
+    describe aide_conf.where { selection_line == '/sbin/autrace' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/audispd' } do
+    describe aide_conf.where { selection_line == '/sbin/audispd' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
 
-    describe aide_conf.where { selection_line == '/usr/sbin/augenrules' } do
+    describe aide_conf.where { selection_line == '/sbin/augenrules' } do
       its('rules') { should include ['p', 'i', 'n', 'u', 'g', 's', 'b', 'acl', 'xattr' 'sha512'] }
     end
   else
