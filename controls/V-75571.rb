@@ -63,12 +63,13 @@ must be documented with the Information System Security Officer (ISSO)."
   users.where { !shell.match(ignore_shells) && (uid >= 1000 || uid == 0) }.entries.each do |user_info|
     next if exempt_home_users.include?(user_info.username.to_s)
 
-    grep_results = command("grep -i path --exclude=\".bash_history\" #{user_info.home}/.*").stdout.split('\\n')
+    grep_results = command("egrep '^[^#]\s*PATH' --exclude=\".bash_history\" /home/ubuntu/.* 2>/dev/null").stdout.split('\\n')
     grep_results.each do |result|
       result.slice! 'PATH='
       result += ' ' if result[-1] == ':'
       result.slice! '$PATH:'
       result.slice! "$PATH\"\n"
+      result.slice! "$PATH\""
       result.gsub! '$HOME', user_info.home.to_s
       result.gsub! '~', user_info.home.to_s
       line_arr = result.split(':')
