@@ -63,7 +63,7 @@ must be documented with the Information System Security Officer (ISSO)."
   users.where { !shell.match(ignore_shells) && (uid >= 1000 || uid == 0) }.entries.each do |user_info|
     next if exempt_home_users.include?(user_info.username.to_s)
 
-    grep_results = command("egrep '^[^#]\s*PATH' --exclude=\".bash_history\" /home/ubuntu/.* 2>/dev/null").stdout.split('\\n')
+    grep_results = command("egrep '^[^#]\s*PATH' --exclude=\".bash_history\" #{user_info.home}/.* 2>/dev/null").stdout.split("\n")
     grep_results.each do |result|
       result.slice! 'PATH='
       result += ' ' if result[-1] == ':'
@@ -76,6 +76,7 @@ must be documented with the Information System Security Officer (ISSO)."
       line_arr.delete_at(0)
       line_arr.each do |line|
         line.slice! '"'
+        line.strip!
         next unless !line.start_with?('export') && !line.start_with?('#')
 
         if line.strip.empty?
